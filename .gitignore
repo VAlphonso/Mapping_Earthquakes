@@ -5,6 +5,7 @@
 
 .DS_Store
 config.py
+config.js
 
 # User-specific files
 *.rsuser
