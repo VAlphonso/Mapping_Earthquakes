@@ -1,5 +1,5 @@
 // Add console.log to check to see if our code is working.
-console.lor("working?")
+console.log("working?")
 
 // We create the tile layer that will be the background of our map.
 let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -32,24 +32,11 @@ let map = L.map('mapid', {
 L.control.layers(baseMaps).addTo(map);
 
 // Accessing the Toronto neighborhoods GeoJSON URL.
-let torontoHoods = "https://raw.githubusercontent.com/https://raw.githubusercontent.com/VAlphonso/Mapping_Earthquakes/Mapping_GeoJSON_Linestrings/Mapping_GeoJSON-Linestrings/torontoRoutes.json/Mapping_Earthquakes/main/torontoRoutes.json";
-
-// Create a style for the lines.
-let myStyle = {
-    color: "#ffffa1",
-    weight: 2
-}
+let torontoHoods = "https://raw.githubusercontent.com/VAlphonso/Mapping_Earthquakes/Mapping_GeoJSON_Polygons/Mapping_GeoJSON_Polygons/torontoNeighborhoods.json";
 
 // Grabbing our GeoJSON data.
-d3.json(torontoData).then(function(data){
+d3.json(torontoHoods).then(function(data){
     console.log(data);
-    // Creating a GEoJSON layer with the retrieved data.
-    L.geoJson(data, {
-        style: myStyle,
-        onEachFeature: function(feature, layer) {
-            layer.bindPopup("<h3> Airline: " + feature.properties.airline + "</h3> <hr><h3> Destination: "
-            + feature.properties.dst + "</h3>");
-        }
-    })
-    .addTo(map);
+    // Creating a GeoJSON layer with the retrieved data.
+    L.geoJson(data).addTo(map);
 });
